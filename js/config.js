@@ -5,10 +5,9 @@
 
 window.BoardConfig = {
   station: {
-    // TODO(operator): set the station's approximate coordinates (nearest
-    // town is fine). Drives weather + NWS alerts; null disables both.
-    latitude: null,
-    longitude: null
+    // Approximate (town-center) coordinates — drives weather + NWS alerts.
+    latitude: 29.93,
+    longitude: -90.37
   },
 
   sheet: {
