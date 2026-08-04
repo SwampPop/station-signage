@@ -1,0 +1,37 @@
+/* Clinical theme: teal / gold / cream (lineage: Norepi CE lecture). */
+
+body.theme-clinical {
+  background: #f6f2e8;
+  color: #2a2a2a;
+}
+
+body.theme-clinical .eyebrow { color: #2a5c5c; font-weight: 600; }
+body.theme-clinical h1 { color: #2a5c5c; }
+body.theme-clinical .kpi-value { color: #2a5c5c; }
+body.theme-clinical .kpi-label { color: #6b6b6b; }
+body.theme-clinical .body { color: #333; }
+body.theme-clinical .quote { color: #2a2a2a; border-left-color: #c9a227; }
+
+body.theme-clinical .slide-inner {
+  background: #ffffff;
+  border: 1px solid rgba(42, 92, 92, 0.15);
+  border-top: 6px solid #c9a227;
+  border-radius: 18px;
+  padding: 6vh 6vw;
+  box-shadow: 0 20px 60px rgba(42, 92, 92, 0.12);
+}
+
+body.theme-clinical table.schedule th { color: #6b6b6b; }
+body.theme-clinical table.schedule tbody tr { border-bottom-color: rgba(42, 92, 92, 0.12); }
+
+body.theme-clinical dl.drug-card dt { color: #2a5c5c; }
+
+body.theme-clinical .footnote { color: #8a8a8a; }
+
+body.theme-clinical .clinical-slide .slide-inner::after {
+  color: #8a7230;
+  border-top: 1px solid rgba(201, 162, 39, 0.25);
+  padding-top: 2vh;
+}
+
+body.theme-clinical footer.status-bar { color: #8a8a8a; }

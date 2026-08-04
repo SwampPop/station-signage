@@ -1,0 +1,61 @@
+name: Refresh road closures
+
+# Pulls 511LA events into data/closures-auto.json on a schedule. Inert
+# until the LA511_KEY repo secret exists (the build script exits quietly
+# without it).
+#
+# GitHub does NOT create workflow runs for pushes made with GITHUB_TOKEN,
+# so the data commit alone would never publish — the explicit
+# workflow_dispatch of pages.yml below is what actually deploys the JSON
+# (dispatch is the documented exception to that rule).
+#
+# GitHub also pauses cron schedules after 60 days without repository
+# activity. Data commits count as activity once the key is live; during
+# the inert phase, if closures ever stop refreshing, re-enable this
+# workflow from the repo's Actions tab.
+
+on:
+  schedule:
+    - cron: '7,37 * * * *' # twice hourly, off the top-of-hour congestion
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write # to dispatch the Pages deploy
+
+concurrency:
+  group: closures
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Build closures JSON
+        env:
+          LA511_KEY: ${{ secrets.LA511_KEY }}
+        run: node scripts/build-closures.js
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- data/closures-auto.json; then
+            echo "No changes."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/closures-auto.json
+          git commit -m "chore(data): refresh 511LA closures"
+          git push origin HEAD:main || (git pull --rebase origin main && git push origin HEAD:main)
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Pages deploy
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main

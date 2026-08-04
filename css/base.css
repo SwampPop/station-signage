@@ -1,0 +1,348 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+main#stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 700ms ease;
+  padding: 6vh 8vw;
+}
+
+.slide.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide.hidden-by-guard { display: none !important; }
+
+.slide-inner {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.eyebrow {
+  font-size: clamp(14px, 1.2vw, 20px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 1.5vh;
+}
+
+h1 {
+  font-size: clamp(40px, 6vw, 96px);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 3vh;
+}
+
+h1.hero {
+  font-size: clamp(64px, 9vw, 180px);
+  letter-spacing: -0.02em;
+}
+
+.body, .quote {
+  font-size: clamp(20px, 2vw, 36px);
+  line-height: 1.45;
+  max-width: 80ch;
+}
+
+.byline {
+  margin-top: 2vh;
+  font-size: clamp(14px, 1.2vw, 22px);
+  opacity: 0.6;
+}
+
+.meta {
+  font-size: clamp(18px, 1.6vw, 28px);
+  opacity: 0.7;
+  margin-top: 2vh;
+}
+
+ul.bullets {
+  list-style: none;
+  padding: 0;
+}
+ul.bullets li {
+  font-size: clamp(22px, 2.2vw, 42px);
+  padding: 1vh 0 1vh 1em;
+  position: relative;
+}
+ul.bullets li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  opacity: 0.6;
+}
+
+table.schedule {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(18px, 1.8vw, 32px);
+}
+table.schedule th, table.schedule td {
+  text-align: left;
+  padding: 1.2vh 1.5vw;
+}
+table.schedule th {
+  font-size: clamp(12px, 0.9vw, 16px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.35;
+}
+table.schedule tbody tr { border-bottom: 1px solid rgba(128,128,128,0.15); }
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 3vw;
+  margin: 2vh 0;
+}
+.kpi { text-align: left; }
+.kpi-value {
+  font-size: clamp(48px, 7vw, 120px);
+  font-weight: 700;
+  line-height: 1;
+}
+.kpi-label {
+  font-size: clamp(14px, 1.2vw, 22px);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 0.5vh;
+}
+
+dl.drug-card {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 1.2vh 3vw;
+  font-size: clamp(18px, 1.8vw, 32px);
+}
+dl.drug-card dt {
+  font-weight: 600;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: clamp(14px, 1.2vw, 22px);
+  padding-top: 0.3em;
+}
+
+.footnote {
+  margin-top: 3vh;
+  font-size: clamp(12px, 1vw, 16px);
+  opacity: 0.5;
+  letter-spacing: 1px;
+}
+
+.quote {
+  font-style: italic;
+  padding-left: 1em;
+  border-left: 3px solid currentColor;
+  opacity: 0.9;
+}
+
+.weather-placeholder {
+  font-size: clamp(20px, 2vw, 36px);
+  opacity: 0.5;
+  padding: 4vh 0;
+}
+
+/* ── Dynamic board components (messages, roads, weather, priority) ── */
+
+.msg-body {
+  font-size: clamp(22px, 2.2vw, 42px);
+  line-height: 1.45;
+  max-width: 80ch;
+}
+
+.msg-footer {
+  margin-top: 3vh;
+  font-size: clamp(13px, 1.1vw, 18px);
+  opacity: 0.55;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.roads-body { font-size: clamp(18px, 1.8vw, 32px); }
+
+.roads-empty {
+  opacity: 0.7;
+  font-size: clamp(20px, 2vw, 36px);
+  padding: 2vh 0;
+}
+
+.closure-item {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4vh 1.4vw;
+  align-items: start;
+  padding: 1vh 1vw;
+  margin: 0.8vh 0;
+  border-left: 6px solid transparent;
+}
+
+.closure-loc { font-weight: 650; }
+
+.closure-detail {
+  font-size: clamp(15px, 1.3vw, 24px);
+  opacity: 0.75;
+}
+
+.badge {
+  font-size: clamp(11px, 0.85vw, 14px);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 0.25em 0.7em;
+  border-radius: 6px;
+  margin-top: 0.35em;
+}
+
+.stale-tag {
+  display: inline-block;
+  font-size: clamp(11px, 0.85vw, 14px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 0.2em 0.6em;
+  border-radius: 6px;
+  margin-left: 0.8em;
+  vertical-align: middle;
+}
+
+.wx-alert-line {
+  font-size: clamp(18px, 1.7vw, 30px);
+  font-weight: 600;
+  margin-bottom: 1.5vh;
+}
+.wx-alert-line:empty { display: none; }
+
+.wx-current {
+  display: flex;
+  align-items: baseline;
+  gap: 2vw;
+  flex-wrap: wrap;
+}
+
+.wx-temp {
+  font-size: clamp(64px, 8vw, 150px);
+  font-weight: 750;
+  line-height: 1;
+}
+
+.wx-cond { font-size: clamp(24px, 2.6vw, 48px); }
+
+.wx-meta {
+  font-size: clamp(16px, 1.5vw, 26px);
+  opacity: 0.75;
+}
+
+.wx-hours {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 2.5vw;
+  margin-top: 3vh;
+}
+
+.wx-hour {
+  text-align: center;
+  font-size: clamp(14px, 1.3vw, 24px);
+}
+.wx-hour .t { font-weight: 700; font-size: clamp(18px, 1.8vw, 32px); }
+.wx-hour .p { opacity: 0.65; }
+
+.priority-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 40;
+  padding: 1.2vh 2vw;
+  font-size: clamp(20px, 2vw, 36px);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.priority-banner[hidden] { display: none; }
+
+.takeover-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8vh 8vw;
+  text-align: center;
+}
+.takeover-overlay[hidden] { display: none; }
+
+.takeover-tag {
+  font-size: clamp(16px, 1.4vw, 24px);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 2vh;
+}
+
+.takeover-title {
+  font-size: clamp(48px, 7vw, 140px);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 3vh;
+}
+
+.takeover-body {
+  font-size: clamp(22px, 2.4vw, 44px);
+  line-height: 1.4;
+  max-width: 70ch;
+}
+
+.takeover-until {
+  margin-top: 4vh;
+  font-size: clamp(16px, 1.4vw, 24px);
+  opacity: 0.8;
+}
+
+footer.status-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Attestation footer (clinical slides only) */
+.clinical-slide .slide-inner::after {
+  content: attr(data-attestation-footer);
+  display: block;
+  margin-top: 4vh;
+  font-size: clamp(11px, 0.9vw, 14px);
+  opacity: 0.45;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

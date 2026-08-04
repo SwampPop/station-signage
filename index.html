@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station Signage — Preview</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+    }
+    .wrap { max-width: 640px; }
+    h1 { font-weight: 600; margin-bottom: 8px; }
+    p { color: #888; margin-top: 0; }
+    .links { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    a.screen-link {
+      display: block;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    a.screen-link:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.2);
+    }
+    a.screen-link h2 { margin: 0 0 6px 0; font-size: 20px; }
+    a.screen-link span { color: #888; font-size: 13px; }
+    .ops h2 { color: #22c55e; }
+    .clinical h2 { color: #c9a227; }
+    footer { margin-top: 32px; font-size: 12px; color: #555; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Station Signage — Local Preview</h1>
+    <p>Not the production entry point. Each Pi loads ops or clinical directly.</p>
+    <div class="links">
+      <a class="screen-link ops" href="ops.html">
+        <h2>Screen A — Operations</h2>
+        <span>messages · road closures · weather &amp; alerts · safety</span>
+      </a>
+      <a class="screen-link clinical" href="clinical.html">
+        <h2>Screen B — Clinical</h2>
+        <span>pearls · drug spotlight · protocol highlights (parked)</span>
+      </a>
+    </div>
+    <footer>Live board · content via Google Sheet + 511LA/DOTD/NWS feeds</footer>
+  </div>
+</body>
+</html>

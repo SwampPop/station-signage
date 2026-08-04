@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station — Operations</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/ops-theme.css">
+</head>
+<body class="theme-ops">
+  <main id="stage">
+
+    <section class="slide" data-dwell="6000" data-slide-id="welcome">
+      <div class="slide-inner">
+        <div class="eyebrow">Station Board</div>
+        <h1 class="hero">Operations</h1>
+        <div class="meta" id="clock-welcome"></div>
+      </div>
+    </section>
+
+    <!-- Message slides from the Google Sheet are injected here,
+         between `welcome` and `roads` (see js/messages.js). -->
+
+    <section class="slide" data-dwell="15000" data-slide-id="roads">
+      <div class="slide-inner">
+        <div class="eyebrow">Road status</div>
+        <h1>Closures &amp; Hazards</h1>
+        <div id="roads-body" class="roads-body">Loading road status…</div>
+        <div id="roads-footer" class="footnote"></div>
+      </div>
+    </section>
+
+    <section class="slide" data-dwell="12000" data-slide-id="weather">
+      <div class="slide-inner">
+        <div class="eyebrow">Local conditions</div>
+        <h1>Weather</h1>
+        <div id="wx-alert-line" class="wx-alert-line"></div>
+        <div id="weather-body" class="weather-placeholder">Loading weather…</div>
+      </div>
+    </section>
+
+    <section class="slide" data-dwell="10000" data-slide-id="safety">
+      <div class="slide-inner">
+        <div class="eyebrow">Safety reminder</div>
+        <h1>Look twice. Back in.</h1>
+        <p class="body">Seatbelts on, scene lights up, spotter when reversing.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Priority layer: outside #stage so the rotator never touches it. -->
+  <div id="priority-banner" class="priority-banner" hidden></div>
+  <div id="takeover" class="takeover-overlay" hidden></div>
+
+  <footer class="status-bar">
+    <span id="status-slide">—</span>
+    <span id="status-feeds"></span>
+    <span id="status-clock"></span>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/sheet-loader.js"></script>
+  <script src="js/priority.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/closures.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/refresh.js"></script>
+  <script src="js/rotator.js"></script>
+  <script>
+    (function () {
+      // Simple clock
+      function tick() {
+        const now = new Date();
+        const t = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const el1 = document.getElementById('clock-welcome');
+        const el2 = document.getElementById('status-clock');
+        if (el1) el1.textContent = t;
+        if (el2) el2.textContent = t;
+      }
+      tick();
+      setInterval(tick, 15000);
+
+      Priority.start();
+      Refresh.start();
+
+      // Kick every feed's first load, but never hold the rotation hostage:
+      // start rotating after all first loads settle or 4 s, whichever
+      // comes first. The welcome/safety slides are static, so the board
+      // has content even with every feed down.
+      const firstLoads = [
+        Messages.start(),
+        Closures.start(),
+        Alerts.start(),
+        Weather.start()
+      ];
+
+      const rotator = new Rotator(document.getElementById('stage'), {
+        statusEl: document.getElementById('status-slide')
+      });
+      Promise.race([
+        Promise.allSettled(firstLoads),
+        new Promise(resolve => setTimeout(resolve, 4000))
+      ]).then(() => rotator.start());
+    })();
+  </script>
+</body>
+</html>

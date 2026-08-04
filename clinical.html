@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station — Clinical</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/clinical-theme.css">
+</head>
+<body class="theme-clinical">
+  <main id="stage">
+
+    <section class="slide clinical-slide"
+             data-dwell="20000"
+             data-slide-id="pearl"
+             data-attested-by="TL"
+             data-attested-date="2026-04-17"
+             data-protocol-ref="placeholder">
+      <div class="slide-inner">
+        <div class="eyebrow">Clinical pearl of the week</div>
+        <h1>Placeholder pearl</h1>
+        <p class="body">Hand-authored placeholder. Replace with the week's pearl. Keep to one idea.</p>
+      </div>
+    </section>
+
+    <section class="slide clinical-slide"
+             data-dwell="20000"
+             data-slide-id="drug"
+             data-attested-by="TL"
+             data-attested-date="2026-04-17"
+             data-protocol-ref="placeholder">
+      <div class="slide-inner">
+        <div class="eyebrow">Drug spotlight</div>
+        <h1>Placeholder drug</h1>
+        <dl class="drug-card">
+          <dt>Indication</dt><dd>—</dd>
+          <dt>Dose</dt><dd>—</dd>
+          <dt>Route</dt><dd>—</dd>
+          <dt>Watch for</dt><dd>—</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="slide clinical-slide"
+             data-dwell="18000"
+             data-slide-id="protocol"
+             data-attested-by="TL"
+             data-attested-date="2026-04-17"
+             data-protocol-ref="placeholder">
+      <div class="slide-inner">
+        <div class="eyebrow">Protocol highlight</div>
+        <h1>Placeholder</h1>
+        <p class="body">Recent protocol change or high-yield reminder. One sentence headline, one paragraph max.</p>
+      </div>
+    </section>
+
+    <section class="slide clinical-slide"
+             data-dwell="12000"
+             data-slide-id="qa"
+             data-attested-by="TL"
+             data-attested-date="2026-04-17"
+             data-protocol-ref="QA placeholder">
+      <div class="slide-inner">
+        <div class="eyebrow">QA trend · team aggregate</div>
+        <h1>Compliance</h1>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-value">—%</div><div class="kpi-label">High-performance CPR</div></div>
+          <div class="kpi"><div class="kpi-value">—%</div><div class="kpi-label">12-lead within 10m</div></div>
+          <div class="kpi"><div class="kpi-value">—%</div><div class="kpi-label">ETCO₂ documented</div></div>
+        </div>
+        <div class="footnote">Team-level · no run identifiers · no PHI</div>
+      </div>
+    </section>
+
+    <section class="slide clinical-slide"
+             data-dwell="18000"
+             data-slide-id="reference"
+             data-attested-by="TL"
+             data-attested-date="2026-04-17"
+             data-protocol-ref="ref card (static)">
+      <div class="slide-inner">
+        <div class="eyebrow">Quick reference</div>
+        <h1>Push-dose epi</h1>
+        <dl class="drug-card">
+          <dt>Prep</dt><dd>1 mL (100 mcg) epi 1:10,000 + 9 mL NS = 10 mcg/mL</dd>
+          <dt>Adult dose</dt><dd>5–20 mcg (0.5–2 mL) IV/IO q 2–5 min, titrate to MAP</dd>
+          <dt>Not a substitute for</dt><dd>infusion once stabilized; fix the pathology</dd>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="status-bar">
+    <span id="status-slide">—</span>
+    <span id="status-attestation"></span>
+    <span id="status-clock"></span>
+  </footer>
+
+  <script src="js/attestation-guard.js"></script>
+  <script src="js/rotator.js"></script>
+  <script>
+    (function () {
+      function tick() {
+        const now = new Date();
+        const t = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const el = document.getElementById('status-clock');
+        if (el) el.textContent = t;
+      }
+      tick();
+      setInterval(tick, 15000);
+
+      // Enforce attestation on all clinical slides BEFORE starting rotation
+      const guardReport = AttestationGuard.enforce(document.getElementById('stage'));
+      const a = document.getElementById('status-attestation');
+      if (a) a.textContent = `attested: ${guardReport.kept}/${guardReport.total}`;
+
+      const rotator = new Rotator(document.getElementById('stage'), {
+        statusEl: document.getElementById('status-slide')
+      });
+      rotator.start();
+    })();
+  </script>
+</body>
+</html>

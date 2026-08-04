@@ -1,0 +1,15 @@
+.DS_Store
+.vscode/
+.idea/
+node_modules/
+*.log
+.env
+.env.local
+
+# Internal session/ops docs — never published (repo is public)
+HANDOFF.md
+PROJECT_CONTEXT.md
+GEMINI.md
+todo.md
+CLAUDE.md
+AGENTS.md

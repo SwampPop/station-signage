@@ -1,0 +1,66 @@
+/* Ops theme: dark gradient + glassmorphism (lineage: CYT dashboard). */
+
+body.theme-ops {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+  color: #e0e0e0;
+}
+
+body.theme-ops .eyebrow { color: #22c55e; }
+body.theme-ops h1 { color: #ffffff; }
+body.theme-ops .kpi-value { color: #ffffff; }
+body.theme-ops .kpi-label { color: #888; }
+body.theme-ops .byline { color: #888; }
+body.theme-ops .quote { color: #dcdce0; border-left-color: #22c55e; }
+
+body.theme-ops .slide-inner {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  padding: 6vh 6vw;
+}
+
+body.theme-ops table.schedule th { color: #888; border-bottom-color: rgba(255,255,255,0.2); }
+body.theme-ops table.schedule tbody tr { border-bottom-color: rgba(255,255,255,0.08); }
+
+body.theme-ops dl.drug-card dt { color: #888; }
+
+body.theme-ops .footnote { color: #666; }
+
+body.theme-ops footer.status-bar { color: #444; }
+
+/* Dynamic board components */
+
+body.theme-ops .slide.msg-high .slide-inner {
+  border-color: rgba(34, 197, 94, 0.5);
+  border-width: 2px;
+}
+
+body.theme-ops .closure-item.sev-closed { border-left-color: #ef4444; }
+body.theme-ops .closure-item.sev-caution { border-left-color: #f59e0b; }
+body.theme-ops .closure-item.sev-info { border-left-color: #38bdf8; }
+
+body.theme-ops .badge-manual { background: #334155; color: #e2e8f0; }
+body.theme-ops .badge-511 { background: #155e75; color: #cffafe; }
+body.theme-ops .badge-dotd { background: #3f3f46; color: #e4e4e7; }
+
+body.theme-ops .stale-tag { background: #78350f; color: #fcd34d; }
+
+body.theme-ops .wx-alert-line { color: #fbbf24; }
+
+body.theme-ops .priority-banner {
+  background: #b45309;
+  color: #fff;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-ops .takeover-overlay { color: #fff; }
+body.theme-ops .takeover-overlay.sev-extreme {
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+}
+body.theme-ops .takeover-overlay.sev-severe {
+  background: linear-gradient(135deg, #7c2d12, #c2410c);
+}
+body.theme-ops .takeover-overlay.sev-notice {
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+}
