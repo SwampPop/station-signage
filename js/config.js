@@ -12,9 +12,8 @@ window.BoardConfig = {
   },
 
   sheet: {
-    // TODO(operator): paste the Google Sheet ID (Share -> Anyone with the
-    // link: Viewer). null keeps sheet-driven slides hidden.
-    id: null,
+    // "Station Board" sheet (Share -> Anyone with the link: Viewer).
+    id: '11N4Cz-0CKiurUhRQA21yUQcE4gZQ1ouBsEqIE_-DMrE',
     tabs: { messages: 'messages', closures: 'closures' },
     // gviz CSV endpoint: no publish step, near-zero cache latency.
     // Fallback if Google ever changes gviz: File -> Share -> Publish each
