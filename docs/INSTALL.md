@@ -1,48 +1,24 @@
 # Screen install guide
 
-Two paths: a **Fire TV stopgap** you can do today with no hardware, and
-the **Raspberry Pi player**, which is the durable 24/7 setup. Both display
+**The plan of record (decided 2026-08-04): TVs stay offline, Pi drives
+everything.** The station's Insignia Fire TVs were found factory-fresh —
+never on WiFi, no Amazon account. Keep them that way: complete their
+one-time setup *skipping* WiFi and Amazon sign-in, and each TV becomes a
+plain panel with HDMI inputs. No Amazon home screen, no ads, and no Fire
+OS OTA updates to silently break kiosk behavior. The Raspberry Pi is the
+only networked device and displays
 `https://scpems-ops.github.io/station-signage/ops.html`.
 
-Whichever path: set the display device's clock/timezone to station time
-(America/Chicago) — message expiry and closure windows use device-local
-time.
+Set the Pi's clock/timezone to station time (America/Chicago) — message
+expiry and closure windows use device-local time.
 
 ---
 
-## Path A — Fire TV stopgap (today, ~$9)
-
-Works on the station's Insignia Fire TVs directly. Honest limits: Fire OS
-has no reliable app auto-launch, so **after a power blink or a Fire OS
-update, someone may need to reopen the app from the row of installed
-apps** (one click with the remote). Amazon's OTA updates occasionally
-revert sleep settings. Treat this as temporary; keep the Pi plan funded.
-
-1. **Enable sideloading**: Settings → My Fire TV → About → click the
-   device name 7 times (unlocks Developer Options) → Developer Options →
-   turn on *Apps from Unknown Sources* (and *ADB Debugging* if you want
-   remote admin later).
-2. **Install Downloader** from the Amazon Appstore, then use it to
-   install **Fully Kiosk Browser** (fully-kiosk.com — get the Fire TV APK
-   URL from their site).
-3. **License**: buy a Fully Kiosk PLUS license (€7.90 one-time, per
-   device) — needed for crash auto-restart and screensaver control.
-4. **Configure Fully Kiosk**:
-   - Start URL: `https://scpems-ops.github.io/station-signage/ops.html`
-   - Keep Screen On: enabled · Launch on Boot: enabled (works after a
-     normal standby wake; not after a hard power cut)
-   - Auto Reload on Error: enabled
-5. **TV settings**: Settings → Display & Sounds → Power Controls →
-   turn off sleep timers / screensaver as far as the menu allows.
-6. **Crew note**: if the screen ever shows the Amazon home screen, open
-   Fully Kiosk from Your Apps — the board resumes automatically.
-
-## Path B — Raspberry Pi player (durable, ~$150)
-
-### Shopping list
+## Shopping list (~$165, one order)
 
 | Item | ~Price |
 |---|---|
+| Replacement remote for Insignia Fire TV (IR, e.g. NS-RCFNA-compatible — needed once for TV setup, then lives in a drawer; one covers both TVs) | $12 |
 | Raspberry Pi 5 (4 GB) | $70 |
 | Official 27 W USB-C PSU | $14 |
 | SanDisk **Max Endurance** 64 GB microSD | $30 |
@@ -51,14 +27,21 @@ revert sleep settings. Treat this as temporary; keep the Pi plan funded.
 | Heavy-duty Velcro (mount Pi behind TV) | $5 |
 | Flat Ethernet cable (strongly preferred over WiFi) | $8 |
 
-### TV settings (Insignia Fire TV)
+## One-time TV setup (per TV, with the replacement remote)
 
-- Settings → Display & Sounds → Power Controls → **Power On: Last Input**
-  — the TV powers on straight to the Pi's HDMI input, never the Amazon
-  home screen.
-- Note: after a hard power loss the TV stays **off** (no auto-power-on
-  setting exists). The Pi's CEC unit below turns it back on; worst case a
-  crew member presses the power button once.
+1. Power on — the TV sits at the language screen (factory state).
+2. Walk the setup: choose language → **Skip WiFi setup** ("set up
+   later" / skip when offered) → **skip Amazon sign-in**. The TV must
+   never join a network; that is a feature, not a shortcut.
+3. Settings → Display & Sounds → Power Controls → **Power On: Last
+   Input** — the TV powers on straight to the Pi's HDMI input, never a
+   Fire TV screen.
+4. Turn off sleep timers / screensaver as far as the menus allow.
+5. Note: after a hard power loss the TV stays **off** (no auto-power-on
+   setting exists). The Pi's CEC unit below turns it back on; worst case
+   a crew member presses the power button once.
+
+## Raspberry Pi player build
 
 ### Pi setup (Raspberry Pi OS Bookworm, 64-bit desktop)
 
