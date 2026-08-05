@@ -73,6 +73,16 @@ than none. Bump `updated` when you re-confirm a status. These are crew
 reports, not hospital data — treat them as situational awareness, not
 gospel.
 
+### Posting by email (optional bridge)
+
+With `scripts/mail-to-board.gs` installed on the sheet (see the file's
+header for setup), allowlisted senders can post by emailing the board
+account with subject `BOARD: <title>` (or `BOARD HIGH:` / `BOARD
+URGENT:`). The email body becomes the message body; the sender gets a
+confirmation reply. Full-screen `takeover` can't be triggered by email —
+that's deliberate. Never auto-forward a work mailbox to the board
+account; the board is public.
+
 ### Content guardrails
 
 - **No PHI, ever.** No patient names, run numbers, or CAD details.
