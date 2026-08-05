@@ -56,6 +56,23 @@ Priority levels:
 Automated closures (511LA incidents/closures, DOTD work zones) merge into
 the same slide with source badges — you don't manage those.
 
+### `hospitals` tab — crew-reported hospital status (optional)
+
+Create this tab and the slide appears; delete all rows and it disappears.
+
+| column | values |
+|---|---|
+| `active` | `yes` / `no` |
+| `hospital` | `Ochsner Kenner` |
+| `status` | `open` / `busy` / `slow` / `divert` / `closed` get color chips; any other text shows plain |
+| `note` | `offload ~45 min` (optional) |
+| `updated` | `2026-08-04 18:30` — **required**; rows vanish 8 h after this time |
+
+The 8-hour auto-expiry is deliberate: a stale offload status is worse
+than none. Bump `updated` when you re-confirm a status. These are crew
+reports, not hospital data — treat them as situational awareness, not
+gospel.
+
 ### Content guardrails
 
 - **No PHI, ever.** No patient names, run numbers, or CAD details.
@@ -112,8 +129,10 @@ station-signage/
 │   ├── sheet-loader.js        ← Sheet CSV fetch/parse + slide DOM helpers
 │   ├── messages.js            ← chief messages (sheet tab)
 │   ├── closures.js            ← roads slide: manual + 511 + DOTD merge
+│   ├── hospitals.js           ← crew-reported hospital status (sheet tab)
 │   ├── alerts.js              ← NWS active alerts → priority layer
 │   ├── weather.js             ← Open-Meteo current + 6-hour outlook
+│   ├── radar.js               ← NWS KHDC radar loop slide
 │   ├── priority.js            ← urgent banner + full-screen takeover
 │   ├── refresh.js             ← version poll + daily reload backstop
 │   ├── rotator.js             ← slide cycling

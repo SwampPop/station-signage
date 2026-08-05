@@ -39,6 +39,16 @@
       </div>
     </section>
 
+    <section class="slide" data-dwell="15000" data-slide-id="radar">
+      <div class="slide-inner">
+        <div class="eyebrow">Regional radar</div>
+        <img id="radar-img" class="radar-img"
+             src="https://radar.weather.gov/ridge/standard/KHDC_loop.gif"
+             alt="NWS KHDC radar loop">
+        <div id="radar-footer" class="footnote"></div>
+      </div>
+    </section>
+
     <section class="slide" data-dwell="10000" data-slide-id="safety">
       <div class="slide-inner">
         <div class="eyebrow">Safety reminder</div>
@@ -65,8 +75,10 @@
   <script src="js/priority.js"></script>
   <script src="js/messages.js"></script>
   <script src="js/closures.js"></script>
+  <script src="js/hospitals.js"></script>
   <script src="js/alerts.js"></script>
   <script src="js/weather.js"></script>
+  <script src="js/radar.js"></script>
   <script src="js/refresh.js"></script>
   <script src="js/rotator.js"></script>
   <script>
@@ -93,8 +105,10 @@
       const firstLoads = [
         Messages.start(),
         Closures.start(),
+        Hospitals.start(),
         Alerts.start(),
-        Weather.start()
+        Weather.start(),
+        Radar.start()
       ];
 
       const rotator = new Rotator(document.getElementById('stage'), {

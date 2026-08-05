@@ -35,6 +35,20 @@ window.BoardConfig = {
     maxEntries: 7
   },
 
+  radar: {
+    // NWS RIDGE loop for KHDC (Hammond) — the WSR-88D covering southeast
+    // Louisiana (KLIX was retired). Plain <img>, no key, no CORS needed.
+    url: 'https://radar.weather.gov/ridge/standard/KHDC_loop.gif',
+    refreshMs: 5 * 60 * 1000,
+    staleMs: 20 * 60 * 1000
+  },
+
+  hospitals: {
+    // Crew-sourced statuses from the `hospitals` sheet tab. Rows older
+    // than this vanish — a stale offload status is worse than none.
+    maxAgeMs: 8 * 60 * 60 * 1000
+  },
+
   polls: { // milliseconds; each poller adds +-10% jitter
     sheetMs: 5 * 60 * 1000,
     alertsMs: 5 * 60 * 1000,

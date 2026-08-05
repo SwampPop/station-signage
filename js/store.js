@@ -63,7 +63,7 @@ window.Store = {
 
 window.Health = {
   _states: {},
-  _order: ['sheet', '511', 'dotd', 'nws', 'wx'],
+  _order: ['sheet', '511', 'dotd', 'nws', 'wx', 'radar', 'hosp'],
 
   // state: 'ok' | 'cache' (serving last-good) | 'down' (nothing to show) |
   //        'off' (feature unconfigured — omitted from the bar)

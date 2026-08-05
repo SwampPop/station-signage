@@ -46,6 +46,13 @@ body.theme-ops .badge-dotd { background: #3f3f46; color: #e4e4e7; }
 
 body.theme-ops .stale-tag { background: #78350f; color: #fcd34d; }
 
+body.theme-ops .hosp-open { background: #14532d; color: #86efac; }
+body.theme-ops .hosp-busy { background: #713f12; color: #fde68a; }
+body.theme-ops .hosp-slow { background: #7c2d12; color: #fdba74; }
+body.theme-ops .hosp-divert { background: #7f1d1d; color: #fca5a5; }
+body.theme-ops .hosp-closed { background: #7f1d1d; color: #fca5a5; }
+body.theme-ops .hosp-none { background: #334155; color: #e2e8f0; }
+
 body.theme-ops .wx-alert-line { color: #fbbf24; }
 
 body.theme-ops .priority-banner {
