@@ -113,7 +113,7 @@ stamps `version.json` with the last non-data commit sha; boards reload
 within ~15 minutes of a deploy. Data-only commits (closure refreshes)
 don't trigger board reloads.
 
-Kiosk URL: `https://swamppop.github.io/station-signage/ops.html`
+Kiosk URL: `https://scpems-ops.github.io/station-signage/ops.html`
 
 ## Architecture
 

@@ -2,7 +2,7 @@
 
 Two paths: a **Fire TV stopgap** you can do today with no hardware, and
 the **Raspberry Pi player**, which is the durable 24/7 setup. Both display
-`https://swamppop.github.io/station-signage/ops.html`.
+`https://scpems-ops.github.io/station-signage/ops.html`.
 
 Whichever path: set the display device's clock/timezone to station time
 (America/Chicago) — message expiry and closure windows use device-local
@@ -28,7 +28,7 @@ revert sleep settings. Treat this as temporary; keep the Pi plan funded.
 3. **License**: buy a Fully Kiosk PLUS license (€7.90 one-time, per
    device) — needed for crash auto-restart and screensaver control.
 4. **Configure Fully Kiosk**:
-   - Start URL: `https://swamppop.github.io/station-signage/ops.html`
+   - Start URL: `https://scpems-ops.github.io/station-signage/ops.html`
    - Keep Screen On: enabled · Launch on Boot: enabled (works after a
      normal standby wake; not after a hard power cut)
    - Auto Reload on Error: enabled
@@ -76,7 +76,7 @@ revert sleep settings. Treat this as temporary; keep the Pi plan funded.
      display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
    <div>Starting station board…</div>
    <script>
-     var URL = 'https://swamppop.github.io/station-signage/ops.html';
+     var URL = 'https://scpems-ops.github.io/station-signage/ops.html';
      (function probe() {
        fetch(URL, { cache: 'no-store' })
          .then(function (r) { if (r.ok) location.href = URL; else throw 0; })
