@@ -117,6 +117,7 @@ function cleanBody_(raw) {
   text = text.split('\n')
     .filter(function (l) { return l.indexOf('>') !== 0; })
     .join('\n')
+    .replace(/^\s*(Get Outlook for (iOS|Android).*|Sent from my iP(hone|ad).*|Sent from Yahoo Mail.*|Sent via .*)$/gim, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   return text.slice(0, CONFIG.maxBodyChars);
